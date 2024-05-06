@@ -6,18 +6,46 @@
 //
 
 import UIKit
+import SnapKit
 
 class UserTableViewCell: UITableViewCell {
+    static let id : String = "\(UserTableViewCell.self)"
+    var titleLabel: UILabel = UILabel()
+    var subTitleLabel : UILabel = UILabel()
+    
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
+    
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        configure()
+        configureConstraint()	
     }
-
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
+    
+}
 
+
+private extension UserTableViewCell {
+    func configure(){
+        contentView.addSubview(titleLabel)
+        contentView.addSubview(subTitleLabel)
+    }
+    func configureConstraint(){
+        titleLabel.snp.makeConstraints { make in
+            make.top.equalTo(10)
+            make.left.equalTo(20)
+            
+        }
+        
+        
+        subTitleLabel.snp.makeConstraints { make in
+            make.top.equalTo(titleLabel).offset(20)
+            make.left.equalTo(20)
+            make.bottom.equalToSuperview()
+        }
+        
+    }
 }
