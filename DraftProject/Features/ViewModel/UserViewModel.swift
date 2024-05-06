@@ -32,7 +32,7 @@ final class UserViewModel : IUserViewModel {
     var userDatas : [UserModel] = []
     private var isLoading = false
     let userService : IUserService
-     
+    
     
     init() {
         userService = UserService()

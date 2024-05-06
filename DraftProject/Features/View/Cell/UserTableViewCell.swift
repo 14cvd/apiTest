@@ -10,7 +10,11 @@ import SnapKit
 
 class UserTableViewCell: UITableViewCell {
     static let id : String = "\(UserTableViewCell.self)"
-    var titleLabel: UILabel = UILabel()
+    var titleLabel: UILabel  = {
+        let label = UILabel()
+        label.font = UIFont.boldSystemFont(ofSize: 16)
+        return label
+    }()
     var subTitleLabel : UILabel = UILabel()
     
 

@@ -27,9 +27,12 @@ final class MainVC : UIViewController {
         
     }()
     private let indicator: UIActivityIndicatorView = UIActivityIndicatorView()
-    var tableView : UITableView = {
+   lazy var tableView : UITableView = {
         let tv = UITableView()
         tv.register(UserTableViewCell.self, forCellReuseIdentifier: UserTableViewCell.id)
+        tv.delegate = self
+        tv.dataSource = self
+       tv.separatorStyle = .none
         return tv
     }()
     
@@ -53,6 +56,7 @@ extension MainVC: UserModelDelegate {
     }
 
     func saveDatas(values: [UserModel]) {
+        print(result)
         result = values
         tableView.reloadData()
     }
@@ -74,7 +78,8 @@ private extension MainVC {
 
 extension MainVC : UITableViewDelegate , UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        result.count
+        print(result.count)
+      return  result.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -84,6 +89,7 @@ extension MainVC : UITableViewDelegate , UITableViewDataSource {
         let data = result[indexPath.row]
         cell.titleLabel.text = data.title
         cell.subTitleLabel.text = data.body
+        print(cell)
         return cell
     }
 
